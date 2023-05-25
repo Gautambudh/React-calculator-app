@@ -6,14 +6,14 @@ import { useDispatch, useSelector} from "react-redux";
 
 export default function ThemeToggler() {
   const dispatch = useDispatch();
-  const { selectedTheme } = useSelector(calculatorState);
+  const { selectedTheme, togglerBgColor } = useSelector(calculatorState);
   // console.log(selectedTheme);
   return (
     <Box
       sx={{
         width: 95,
         height:30,
-        backgroundColor: "hsl(223, 31%, 20%)",
+        backgroundColor:`${togglerBgColor}`,
         px: 2,
         py: 0,
         borderRadius: 7
