@@ -4,8 +4,7 @@ export const calculatorSlice = createSlice({
     name: 'calculator',
     initialState: {
         count: 0,
-        cartValue:0,
-        addToCartClicked: false,
+        selectedTheme:1,
     },
     reducers: {
         increment: (state, action) => {
@@ -18,17 +17,12 @@ export const calculatorSlice = createSlice({
                 state.count -= 1;
             }
     },
-    isAddToCartClicked: (state, action) => {
-        state.addToCartClicked = action.payload.value
-        state.cartValue = state.count;
-    },
-    deleteCartValue: (state, action) => {
-        state.cartValue = 0;
+    setSelectedTheme: (state, action) => {
+        state.selectedTheme = action.payload.value;
     }
-
 }
 });
 
-export const { increment, decrement, isAddToCartClicked, deleteCartValue } = calculatorSlice.actions;
+export const { increment, decrement, setSelectedTheme  } = calculatorSlice.actions;
 export const calculatorState = (state) => state.calc
 export default calculatorSlice.reducer;

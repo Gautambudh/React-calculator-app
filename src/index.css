@@ -12,5 +12,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
+#int {
+  color: hsl(281, 85%, 31%);
+}
 
