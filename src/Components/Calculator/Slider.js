@@ -18,7 +18,7 @@ const Root = styled('span')`
 export default function ThemeToggler() {
   const dispatch = useDispatch();
   const { selectedTheme, togglerBgColor } = useSelector(calculatorState);
-  console.log(selectedTheme);
+  // console.log(selectedTheme);
   return (
     <Box
       sx={{

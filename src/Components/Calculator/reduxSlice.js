@@ -23,7 +23,6 @@ export const calculatorSlice = createSlice({
             { value:'/', bgcolor:'hsl(30, 25%, 89%)', hover:'white', boxShadow: "0px 5px 1px -1px hsl(28, 16%, 65%)", txtcolor: 'black'},
             { value:'x', bgcolor:'hsl(30, 25%, 89%)', hover:'white', boxShadow: "0px 5px 1px -1px hsl(28, 16%, 65%)", txtcolor: 'black'},
             ],
-        newlyUpdatedTheme: [{}],
         del_reset_theme: {},
         keypadTheme : 'hsl(223, 31%, 20%)',
         bodyBackground : 'hsl(222, 26%, 31%)',
@@ -57,7 +56,7 @@ export const calculatorSlice = createSlice({
               return {
                 ...key,
                 bgcolor: 'hsl(268, 47%, 21%)',
-                hover: 'cyan',
+                hover: '#6e39ab',
                 boxShadow: '0px 5px 1px -1px hsl(290, 70%, 36%)',
                 txtcolor: 'hsl(52, 100%, 62%)'
               };

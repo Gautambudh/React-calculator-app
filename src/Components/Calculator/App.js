@@ -7,10 +7,34 @@ import { useDispatch, useSelector} from "react-redux";
 
 
 const App = () => {
-  const [ result, setResult ] = React.useState("")
   const dispatch = useDispatch();
   const { selectedTheme, numberKeys, bodyBackground, screen, themeTxtColor, keypadTheme, equalBtn } = useSelector(calculatorState);
+  const [ result, setResult ] = React.useState("");
 
+  const handleClick = (e) => {
+    if (result == 'Error') {
+      setResult(e.target.name);
+    } else 
+    setResult(result.concat(e.target.name));
+  }
+  
+  const reset = () => {
+    setResult("")
+  }
+
+  const calculate = () =>{
+    try {
+      let output = Function("return " + result)();
+      if (result.includes('.') || output.toString().includes('.')) {  // checking if any input contains decimal '.' , if so then setting output upto 2 decimal
+        setResult(output.toFixed(2).toString());
+      } else {
+        setResult(output.toString()); // setting output with no decimal or say whole number
+      }
+    } catch (err) {
+      setResult("Error")
+    }
+  }
+  
 
   return (
     <>
@@ -30,8 +54,7 @@ const App = () => {
 
     {/* Result screen */}
     <TextField variant="standard" fullWidth
-      value={12456}
-        // onChange={(e) => dispatch(setCardholderName({ value: e.target.value }))}
+      value={result}
         sx={{input:{py:2, px:2, verticalAlign:'center',color:`${themeTxtColor}`,
             backgroundColor:`${screen}`,
             textAlign:'right',
@@ -42,13 +65,21 @@ const App = () => {
       />
 
     {/* Keypad container */}
-      <Grid container columns={{ xs:12 }}
-      sx={{backgroundColor:`${keypadTheme}`, borderRadius:3, my:2, gap:2, justifyContent:'space-evenly', px:2, py:2.5}}>
+      <Grid container columns={{ xs:12 }} 
+      // rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 2 }}
+      sx={{backgroundColor:`${keypadTheme}`, borderRadius:3, my:2, 
+      // gap:2, justifyContent:'space-evenly',
+      pl:{sm:2, xs:0.5}, pr:{sm:2, xs:1},
+      py:2.5}}>
         {numberKeys?.map((item, index) => (
-          <Grid item xs={2} key={index} 
+          <Grid item xs={3} key={index} 
           sx={{textAlign:'center', }}>
-            <Button variant="contained" 
-            sx={{py:1, 
+            <Button onClick={(e) =>
+              (item.value !== 'DEL' ? handleClick(e) : setResult(result.slice(0, -1)))
+              }
+            variant="contained" 
+            name={item.value === 'x' ? '*' : item.value}
+            sx={{py:1, mb:2,
             boxShadow:`${item.boxShadow}`,
             backgroundColor:`${item.bgcolor}`, 
             color:`${item.txtcolor}`,
@@ -58,19 +89,66 @@ const App = () => {
             boxShadow:`${item.boxShadow}`}}}>{item.value}</Button>
           </Grid>
         ))}
-        <Box sx={{display:'flex', width:'100%', pl:1.5, pr:0.8,  justifyContent:'space-between'}}>
-      <Button variant="contained" 
-      sx={{width:'47%', py:1, backgroundColor:`${numberKeys[3].bgcolor}`, fontSize:'1.2rem',
+        <Grid container columns={{ xs:12 }} className='extra-small-margin'
+      sx={{
+        // border:'1px solid yellow', 
+      mx:1,
+      // gap:2, justifyContent:'space-evenly',
+      py:1}}>
+          <Grid item xs={6} sx={{}}>
+          <Button variant="contained" onClick={reset}
+            sx={{
+              width:'95%', 
+              mr:1,
+            py:1, backgroundColor:`${numberKeys[3].bgcolor}`, fontSize:'1.2rem',
+            fontWeight:'bold', boxShadow:`${numberKeys[3].boxShadow}`,
+            ":hover":{backgroundColor:`${numberKeys[3].hover}`, 
+            boxShadow:`${numberKeys[3].boxShadow}`}}}>Reset</Button>
+          </Grid>
+
+          <Grid item xs={6} sx={{}}>
+          <Button variant="contained" 
+            onClick={calculate}
+            sx={{
+              width:'95%', 
+            py:1, ml:1,
+            backgroundColor:`${equalBtn}`, 
+            color:`${selectedTheme === 3 ? 'black' : 'white'}`,
+            fontSize:'1.2rem',
+            fontWeight:'bold', 
+            boxShadow: `${selectedTheme === 3 ? '0px 5px 1px -1px hsl(177, 92%, 70%)' : '0px 5px 1px -1px hsl(6, 70%, 34%)'}`,
+            ":hover":{backgroundColor:`${selectedTheme === 3 ? '#04f2e3' : '#db4f3f'}`, 
+            boxShadow: `${selectedTheme === 3 ? '0px 5px 1px -1px hsl(177, 92%, 70%)' 
+            : '0px 5px 1px -1px hsl(6, 70%, 34%)'}`
+            }}}>=</Button>
+          </Grid>
+          </Grid>
+        {/* <Box sx={{display:'flex', width:'100%', px:1, 
+        
+        }}>
+      <Button variant="contained" onClick={reset}
+      sx={{
+        width:'50%', 
+        mr:1,
+      py:1, backgroundColor:`${numberKeys[3].bgcolor}`, fontSize:'1.2rem',
       fontWeight:'bold', boxShadow:`${numberKeys[3].boxShadow}`,
       ":hover":{backgroundColor:`${numberKeys[3].hover}`, 
       boxShadow:`${numberKeys[3].boxShadow}`}}}>Reset</Button>
       <Button variant="contained" 
-      sx={{width:'47%', py:1, 
+      onClick={calculate}
+      sx={{
+        width:'50%', 
+      py:1, ml:1,
       backgroundColor:`${equalBtn}`, 
+      color:`${selectedTheme === 3 ? 'black' : 'white'}`,
       fontSize:'1.2rem',
-      fontWeight:'bold', boxShadow: "0px 5px 1px -1px hsl(6, 70%, 34%)",
-      ":hover":{backgroundColor:`${equalBtn}`, boxShadow: "0px 5px 1px -1px hsl(6, 70%, 34%)"}}}>=</Button>
-      </Box>
+      fontWeight:'bold', 
+      boxShadow: `${selectedTheme === 3 ? '0px 5px 1px -1px hsl(177, 92%, 70%)' : '0px 5px 1px -1px hsl(6, 70%, 34%)'}`,
+      ":hover":{backgroundColor:`${selectedTheme === 3 ? '#04f2e3' : '#db4f3f'}`, 
+      boxShadow: `${selectedTheme === 3 ? '0px 5px 1px -1px hsl(177, 92%, 70%)' 
+      : '0px 5px 1px -1px hsl(6, 70%, 34%)'}`
+      }}}>=</Button>
+      </Box> */}
       </Grid>
     
     </Container>
@@ -80,3 +158,6 @@ const App = () => {
 }
 
 export default App
+
+// pl:1.5, pr:{md:0.8, xs:0.2},  
+        // justifyContent:'space-between'
