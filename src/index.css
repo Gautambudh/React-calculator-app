@@ -12,11 +12,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-#int {
-  color: #6e39ab;
-  background-color: #04f2e3;
-}
-
 @media screen and ( max-width:320px ){
   .extra-small-margin {
     margin-left: 0 !important;

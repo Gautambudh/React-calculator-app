@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 export const calculatorSlice = createSlice({
     name: 'calculator',
     initialState: {
-        count: 0,
         selectedTheme:1,
         numberKeys : [
             { value:'7', bgcolor:'hsl(30, 25%, 89%)', hover:'white', boxShadow: "0px 5px 1px -1px hsl(28, 16%, 65%)", txtcolor: 'black'},
@@ -23,12 +22,11 @@ export const calculatorSlice = createSlice({
             { value:'/', bgcolor:'hsl(30, 25%, 89%)', hover:'white', boxShadow: "0px 5px 1px -1px hsl(28, 16%, 65%)", txtcolor: 'black'},
             { value:'x', bgcolor:'hsl(30, 25%, 89%)', hover:'white', boxShadow: "0px 5px 1px -1px hsl(28, 16%, 65%)", txtcolor: 'black'},
             ],
-        del_reset_theme: {},
         keypadTheme : 'hsl(223, 31%, 20%)',
         bodyBackground : 'hsl(222, 26%, 31%)',
         screen : 'hsl(224, 36%, 15%)',
         themeTxtColor : 'white',
-        equalBtn: 'hsl(6, 63%, 50%)',
+        equalBtnColor: 'hsl(6, 63%, 50%)',
         togglerBgColor: 'hsl(223, 31%, 20%)'
     },
     reducers: {
@@ -98,14 +96,14 @@ export const calculatorSlice = createSlice({
                 state.screen = 'hsl(224, 36%, 15%)';
                 state.themeTxtColor = 'white';
                 state.keypadTheme = 'hsl(223, 31%, 20%)';
-                state.equalBtn = 'hsl(6, 63%, 50%)';
+                state.equalBtnColor = 'hsl(6, 63%, 50%)';
                 state.togglerBgColor = 'hsl(223, 31%, 20%)';
             } else if (state.selectedTheme === 2) {
                 state.bodyBackground = 'hsl(0, 0%, 90%)';
                 state.screen = 'white';
                 state.themeTxtColor = 'hsl(221, 14%, 31%)';
                 state.keypadTheme = 'hsl(0, 5%, 81%)';
-                state.equalBtn = 'hsl(25, 98%, 40%)';
+                state.equalBtnColor = 'hsl(25, 98%, 40%)';
                 state.togglerBgColor = 'hsl(0, 5%, 81%)';
 
             } else if (state.selectedTheme === 3) {
@@ -113,7 +111,7 @@ export const calculatorSlice = createSlice({
                 state.screen = 'hsl(268, 71%, 12%)';
                 state.themeTxtColor = 'hsl(52, 100%, 62%)';
                 state.keypadTheme = 'hsl(268, 71%, 12%)';
-                state.equalBtn = 'hsl(176, 100%, 44%)';
+                state.equalBtnColor = 'hsl(176, 100%, 44%)';
                 state.togglerBgColor = 'hsl(268, 71%, 12%)';
             }
             
@@ -121,6 +119,6 @@ export const calculatorSlice = createSlice({
 }
 });
 
-export const { increment, decrement, setSelectedTheme  } = calculatorSlice.actions;
+export const { setSelectedTheme  } = calculatorSlice.actions;
 export const calculatorState = (state) => state.calc
 export default calculatorSlice.reducer;
