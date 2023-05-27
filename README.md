@@ -31,6 +31,7 @@ Users should be able to:
 
 ### Screenshot
 
+![desktop view](https://github.com/Gautambudh/React-calculator-app/assets/112330342/96b4242c-1ffd-48d1-83c3-5df58dbcaf2c)
 
 
 ### Links
