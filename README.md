@@ -4,8 +4,6 @@ This is a solution to the [Calculator app challenge on Frontend Mentor](https://
 
 ## Table of contents
 
-## Table of contents
-
 - [Overview](#overview)
   - [The challenge](#the-challenge)
   - [Screenshot](#screenshot)
@@ -15,8 +13,6 @@ This is a solution to the [Calculator app challenge on Frontend Mentor](https://
   - [What I learned](#what-i-learned)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 
