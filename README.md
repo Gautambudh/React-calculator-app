@@ -4,8 +4,6 @@ This is a solution to the [Calculator app challenge on Frontend Mentor](https://
 
 ## Table of contents
 
-## Table of contents
-
 - [Overview](#overview)
   - [The challenge](#the-challenge)
   - [Screenshot](#screenshot)
@@ -15,8 +13,6 @@ This is a solution to the [Calculator app challenge on Frontend Mentor](https://
   - [What I learned](#what-i-learned)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 
@@ -31,6 +27,7 @@ Users should be able to:
 
 ### Screenshot
 
+![desktop view](https://github.com/Gautambudh/React-calculator-app/assets/112330342/96b4242c-1ffd-48d1-83c3-5df58dbcaf2c)
 
 
 ### Links
